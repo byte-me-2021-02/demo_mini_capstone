@@ -5,3 +5,4 @@
   image_url: @product.image_url,
   price: @product.price,
 }
+
