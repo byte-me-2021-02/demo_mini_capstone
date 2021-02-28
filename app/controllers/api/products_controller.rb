@@ -28,7 +28,7 @@ class Api::ProductsController < ApplicationController
 
   def update
     # finding a product from the db
-    @product = Product.find_by(id: 13)
+    @product = Product.find_by(id: params[:id])
     # changing an attribute
     @product.description = params[:description]
     @product.price = params[:price]
@@ -37,5 +37,13 @@ class Api::ProductsController < ApplicationController
     # applying those chaanges to the db
     @product.save
     render 'show.json.jb'
+  end
+
+  def destroy
+    # figure out which product to delete
+    @product = Product.find_by(id: params[:id])
+    @product.destroy
+    # delete that product
+    render json: {message: "product has been removed"}
   end
 end
