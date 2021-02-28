@@ -7,5 +7,6 @@ Rails.application.routes.draw do
     # insomnia         controller action
     get "/products" => "products#index"
     post "/products" => "products#create"
+    get "/products/:id" => "products#show"
   end
 end

@@ -17,4 +17,12 @@ class Api::ProductsController < ApplicationController
     # show the user the newly made product
     render 'show.json.jb'
   end
+
+  def show
+    # get data from the db
+    the_id = params[:id]
+    @product = Product.find_by(id: the_id)
+    # show thaat data to the user
+    render 'show.json.jb'
+  end
 end
