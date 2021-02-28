@@ -25,4 +25,17 @@ class Api::ProductsController < ApplicationController
     # show thaat data to the user
     render 'show.json.jb'
   end
+
+  def update
+    # finding a product from the db
+    @product = Product.find_by(id: 13)
+    # changing an attribute
+    @product.description = params[:description]
+    @product.price = params[:price]
+    @product.image_url = params[:image_url]
+    @product.name = params[:name]
+    # applying those chaanges to the db
+    @product.save
+    render 'show.json.jb'
+  end
 end
