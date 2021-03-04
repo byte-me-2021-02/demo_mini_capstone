@@ -11,11 +11,17 @@ class Api::ProductsController < ApplicationController
       image_url: params[:image_url],
       description: params[:description]
     )
-    @product.save
+    if @product.save
+      # happy path
+      render 'show.json.jb'
+    else
+      # sad path
+      # show them some errors
+      render json: {errors: @product.errors.full_messages}
+    end
     # take in some parameters
     # save that data to the db
     # show the user the newly made product
-    render 'show.json.jb'
   end
 
   def show
