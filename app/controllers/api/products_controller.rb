@@ -2,14 +2,15 @@ class Api::ProductsController < ApplicationController
   def index
     if params[:discount] == "true"
       @products = Product.where("price < 10")
-    elsif params[:sort] == "price" && params[:sort_order] == "desc"
-      @products = Product.order({price: :desc})
-    elsif params[:sort] == "price" && params[:sort_order] == "asc"
-      @products = Product.order({price: :asc})
+    elsif params[:sort] && params[:sort_order]
+      @products = Product.order({params[:sort] => params[:sort_order]})
+    # elsif params[:sort] == "price" && params[:sort_order] == "desc"
+    #   @products = Product.order({price: :desc})
+    # elsif params[:sort] == "price" && params[:sort_order] == "asc"
+    #   @products = Product.order({price: :asc})
     else
       @products = Product.all
     end
-    
     # highest to lowest price
     # @products = Product.order({price: :desc})
 
