@@ -11,6 +11,8 @@ class Api::ProductsController < ApplicationController
     else
       @products = Product.all
     end
+
+
     # highest to lowest price
     # @products = Product.order({price: :desc})
 
