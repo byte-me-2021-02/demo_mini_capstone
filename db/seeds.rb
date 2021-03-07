@@ -30,4 +30,13 @@
 
 
 
-p "seeds file in the mini capstone is done!"
+# p "seeds file in the mini capstone is done!"
+
+
+products_without_supplier = Product.where(supplier_id: nil)
+
+products_without_supplier.each do |product|
+  random_supplier_id = Supplier.all.sample.id
+  product.supplier_id = random_supplier_id
+  product.save!
+end

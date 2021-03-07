@@ -7,4 +7,6 @@
   is_discounted?: @product.is_discounted?,
   tax: number_to_currency(@product.tax) ,
   total: @product.total,
+  # supplier: Supplier.find_by(id: @product.supplier_id)
+  supplier: @product.supplier.name
 }
