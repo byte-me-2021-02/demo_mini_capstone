@@ -33,10 +33,19 @@
 # p "seeds file in the mini capstone is done!"
 
 
-products_without_supplier = Product.where(supplier_id: nil)
+# products_without_supplier = Product.where(supplier_id: nil)
 
-products_without_supplier.each do |product|
-  random_supplier_id = Supplier.all.sample.id
-  product.supplier_id = random_supplier_id
-  product.save!
+# products_without_supplier.each do |product|
+#   random_supplier_id = Supplier.all.sample.id
+#   product.supplier_id = random_supplier_id
+#   product.save!
+# end
+
+products_with_image = Product.all
+
+products_with_image.each do |product|
+  # get the image_url
+  image = Image.new(url: product.image_url, product_id: product.id)
+  image.save
+  # make a new Image with it
 end
