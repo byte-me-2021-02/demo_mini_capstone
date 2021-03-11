@@ -1,14 +1,22 @@
 class Api::OrdersController < ApplicationController
   def index
-    p "current_user"
-    p current_user
-    p "current_user"
-
+    
     
     # @orders = Order.where(user_id: current_user.id)
     @orders = current_user.orders
     render 'index.json.jb'
   end
+  
+  def show
+    # p "current_user"
+    # p current_user
+    # p "current_user"
+
+    # @order = Order.find_by(id: params[:id], user_id: current_user.id)
+    @order = current_user.orders.find_by(id: params[:id])
+    render 'show.json.jb'
+  end
+  
   
   def create
 
