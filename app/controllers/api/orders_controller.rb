@@ -4,6 +4,7 @@ class Api::OrdersController < ApplicationController
     
     # @orders = Order.where(user_id: current_user.id)
     @orders = current_user.orders
+    # @orders = Order.all
     render 'index.json.jb'
   end
   
