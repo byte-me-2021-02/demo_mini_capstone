@@ -7,7 +7,8 @@ class Api::OrdersController < ApplicationController
     # subtotal == quantity * price
     product = Product.find_by(id: params[:product_id])
     calculated_subtotal = params[:quantity].to_i * product.price # 300
-    calculated_tax = calculated_subtotal * 0.09
+    # calculated_tax = calculated_subtotal * 0.09
+    calculated_tax = params[:quantity].to_i * product.tax
     calculated_total = calculated_subtotal + calculated_tax
     
     @order = Order.new(
