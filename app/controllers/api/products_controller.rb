@@ -1,4 +1,7 @@
 class Api::ProductsController < ApplicationController
+  before_action :authenticate_admin, only: [:destroy, :create, :update]
+  # before_action :authenticate_admin, except: [:show, :index]
+  
   def index
     if params[:discount] == "true"
       @products = Product.where("price < 10")

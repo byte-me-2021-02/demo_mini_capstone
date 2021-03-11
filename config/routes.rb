@@ -3,6 +3,16 @@ Rails.application.routes.draw do
   # get "/photos" => "photos#index"
 
   # EXAMPLE JSON ROUTE WITH API NAMESPACE
+
+  # 3 tiers of users
+  # guests
+  # users
+  # admin
+
+  
+
+  
+  
   namespace :api do
     # insomnia         controller action
     get "/products" => "products#index"
@@ -11,6 +21,7 @@ Rails.application.routes.draw do
     patch "/products/:id" => "products#update"
     delete "/products/:id" => "products#destroy"
 
+    # only for users/admins
     get "/orders" => "orders#index"
     get "/orders/:id" => "orders#show"
     post "/orders" => "orders#create"
