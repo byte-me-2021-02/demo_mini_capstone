@@ -3,14 +3,23 @@ class Api::ProductsController < ApplicationController
   # before_action :authenticate_admin, except: [:show, :index]
   
   def index
-    if params[:discount] == "true"
-      @products = Product.where("price < 10")
-    elsif params[:sort] && params[:sort_order]
-      @products = Product.order({params[:sort] => params[:sort_order]})
-    # elsif params[:sort] == "price" && params[:sort_order] == "desc"
-    #   @products = Product.order({price: :desc})
-    # elsif params[:sort] == "price" && params[:sort_order] == "asc"
-    #   @products = Product.order({price: :asc})
+    # if params[:discount] == "true"
+    #   @products = Product.where("price < 10")
+    # elsif params[:sort] && params[:sort_order]
+    #   @products = Product.order({params[:sort] => params[:sort_order]})
+    # # elsif params[:sort] == "price" && params[:sort_order] == "desc"
+    # #   @products = Product.order({price: :desc})
+    # # elsif params[:sort] == "price" && params[:sort_order] == "asc"
+    # #   @products = Product.order({price: :asc})
+    # else
+    #   @products = Product.all
+    # end
+
+    if params[:category]
+      # find the category
+      category = Category.find_by(name: params[:category])
+      # find all the products in that category
+      @products = category.products
     else
       @products = Product.all
     end
