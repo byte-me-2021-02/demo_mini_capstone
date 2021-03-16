@@ -46,7 +46,13 @@ class Api::OrdersController < ApplicationController
       tax: calculated_tax,      
     )
     @order.save!
-    p @order.errors.full_messages
+
+    @carted_products.each do |carted_product|
+      carted_product.update(status: "purchased", order_id: @order.id)
+    end
+
+    
+    # p @order.errors.full_messages
     render 'show.json.jb'
   end
 end
