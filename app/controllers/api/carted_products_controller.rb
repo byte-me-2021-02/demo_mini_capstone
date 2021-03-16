@@ -6,6 +6,8 @@ class Api::CartedProductsController < ApplicationController
   end
   
   def create
+    
+    
     @carted_product = CartedProduct.new(
       user_id: current_user.id,
       product_id: params[:product_id],
