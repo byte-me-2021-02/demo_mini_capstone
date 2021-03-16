@@ -22,24 +22,14 @@ class Api::OrdersController < ApplicationController
   
   
   def create
-
-    # subtotal == quantity * price
-    product = Product.find_by(id: params[:product_id])
-    calculated_subtotal = params[:quantity].to_i * product.price # 300
-    # calculated_tax = calculated_subtotal * 0.09
-    calculated_tax = params[:quantity].to_i * product.tax
-    calculated_total = calculated_subtotal + calculated_tax
-    
     @order = Order.new(
-      product_id: params[:product_id],
-      user_id: current_user.id,
-      quantity: params[:quantity],
-      tax: calculated_tax,
-      subtotal: calculated_subtotal,
-      total: calculated_total
+      user_id: 1,
+      subtotal: 100,
+      total: 110,
+      tax: 10,      
     )
-    
     @order.save!
+    p @order.errors.full_messages
     render 'show.json.jb'
   end
 end
