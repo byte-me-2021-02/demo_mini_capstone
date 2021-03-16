@@ -45,7 +45,7 @@ class Api::OrdersController < ApplicationController
       total: calculated_total + calculated_tax,
       tax: calculated_tax,      
     )
-    @order.save!
+    @order.save
 
     @carted_products.each do |carted_product|
       carted_product.update(status: "purchased", order_id: @order.id)

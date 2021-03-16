@@ -6,7 +6,7 @@ class Api::CartedProductsController < ApplicationController
   end
   
   def create
-    
+
     
     @carted_product = CartedProduct.new(
       user_id: current_user.id,
@@ -16,5 +16,11 @@ class Api::CartedProductsController < ApplicationController
     )
     @carted_product.save
     render 'show.json.jb'
+  end
+
+  def destroy
+    @carted_product = CartedProduct.find_by(id: params[:id])
+    @carted_product.update(status: "removed")
+    render json: {message: "Item removed from cart"}
   end
 end
