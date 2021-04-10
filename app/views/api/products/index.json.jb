@@ -5,6 +5,7 @@
     price: product.price,
     description: product.description,
     images: product.images,
-    categories: product.categories
+    categories: product.categories,
+    tax: product.tax
   }
 end
